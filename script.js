@@ -1,6 +1,6 @@
 var game = prompt("Do you want to play?");
-var char1 = "user";
-var char2 = "Almighty Grant";
+var playerName = "user";
+var grant = "Almighty Grant";
 var usrWins = 0;
 var usrBaseHp = 40;
 var grantBaseHp = 10;
@@ -9,12 +9,12 @@ var grantCurrentHp = grantBaseHp;
 var grantPlayLimit = 3;
 
 if (game === "yes") {
-    char1 = prompt("What's your name?");
+    playerName = prompt("What's your name?");
     playLimit();
     if (3 === usrWins) {
-        console.log(char1 + " wins!");
+        console.log(playerName + " wins!");
     } else {
-        console.log(char2 + " wins!");
+        console.log(grant + " wins!");
     }
 } else {
     console.log("Ok...maybe next time.")
@@ -24,12 +24,15 @@ function singleRound() {
     while (0 < grantCurrentHp) {
         grantCurrentHp -= randomNumberGenerator();
         usrCurrentHp -= randomNumberGenerator();
+        if (0 >= usrCurrentHp) {
+            break;
+        }
         console.log("Grant the Almighty Chicken has " + grantCurrentHp + " health left.");
-        console.log(char1 + " has " + usrCurrentHp + " health left.");
+        console.log(playerName + " has " + usrCurrentHp + " health left.");
     }
     usrWins++;
-    console.log(char1 + " Wins: " + usrWins);
     grantCurrentHp = grantBaseHp;
+    console.log("DING! Next Round");
 }
 
 function playLimit() {
