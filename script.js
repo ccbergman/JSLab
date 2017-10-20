@@ -11,6 +11,11 @@ var grantPlayLimit = 3;
 if (game === "yes") {
     char1 = prompt("What's your name?");
     playLimit();
+    if (3 === usrWins) {
+        console.log(char1 + " wins!");
+    } else {
+        console.log(char2 + " wins!");
+    }
 } else {
     console.log("Ok...maybe next time.")
 }
