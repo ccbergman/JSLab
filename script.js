@@ -8,28 +8,31 @@ var usrCurrentHp = usrBaseHp;
 var computerCurrentHp = computerBaseHp;
 var computerPlayLimit = 3;
 
-if (game === "yes") {
-    playerName = prompt("What's your name?");
-    playLimit();
-    if (3 === usrWins) {
-        console.log(playerName + " wins!");
-    } else {
-        console.log(computer + " wins!");
-    }
-} else {
-    console.log("Ok...maybe next time.")
-}
+startGame();
 
 function startGame() {
+    if (game === "yes") {
+        playerName = prompt("What's your name?");
+        startCombat();
 
+        if (3 === usrWins) {
+            console.log(playerName + " wins!");
+        } else {
+            console.log(computer + " wins!");
+        }
+    } else {
+        console.log("Ok...maybe next time.")
+    }
 }
 
 function startCombat() {
-
+    while (0 < usrCurrentHp && 0 < computerPlayLimit) {
+        playLimit();
+        computerPlayLimit--;
+    }
 }
 
-
-function singleRound() {
+function playLimit() {
     while (0 < computerCurrentHp) {
         computerCurrentHp -= getDamage();
         usrCurrentHp -= getDamage();
@@ -44,13 +47,6 @@ function singleRound() {
     console.log("DING! DING! DING!");
 }
 
-function playLimit() {
-    while (0 < usrCurrentHp && 0 < computerPlayLimit) {
-        singleRound();
-        computerPlayLimit--;
-    }
-}
-
 function getDamage() {
-    return Math.floor(Math.random() * 2) + 1;
+    return Math.floor(Math.random() * 5) + 1;
 }
