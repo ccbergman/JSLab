@@ -4,8 +4,9 @@ var char2 = "Almighty Grant";
 var usrWins = 0;
 var usrBaseHp = 40;
 var grantBaseHp = 10;
-var usrCurrentHp = 0;
+var usrCurrentHp = usrBaseHp;
 var grantCurrentHp = grantBaseHp;
+var grantPlayLimit = 3;
 
 // var random = math.floor(math.random() * 2) + 1;
 // var randomNumberBetween0and19 = Math.floor(Math.random() * 20);
@@ -15,9 +16,11 @@ var grantCurrentHp = grantBaseHp;
 
 if (game === "yes") {
     char1 = prompt("What's your name?");
-    singleRound();
-    singleRound();
-    singleRound();
+    while (0 < usrCurrentHp && 0 < grantPlayLimit) {
+        singleRound();
+        usrCurrentHp--;
+        grantPlayLimit--;
+    }
 } else {
     console.log("Ok...maybe next time.")
 }
@@ -31,6 +34,7 @@ function singleRound() {
     console.log(char1 + " Wins: " + usrWins);
     grantCurrentHp = grantBaseHp;
 }
+
 
 // test if username was overwritten
 // console.log(char1)
