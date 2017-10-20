@@ -8,31 +8,33 @@ var usrCurrentHp = usrBaseHp;
 var grantCurrentHp = grantBaseHp;
 var grantPlayLimit = 3;
 
-// var random = math.floor(math.random() * 2) + 1;
-// var randomNumberBetween0and19 = Math.floor(Math.random() * 20);
-
-// var random = function math.random(math.floor() * 2) + 1;
-
-
 if (game === "yes") {
     char1 = prompt("What's your name?");
-    while (0 < usrCurrentHp && 0 < grantPlayLimit) {
-        singleRound();
-        usrCurrentHp--;
-        grantPlayLimit--;
-    }
+    playLimit();
 } else {
     console.log("Ok...maybe next time.")
 }
 
 function singleRound() {
     while (0 < grantCurrentHp) {
-        grantCurrentHp--;
+        var randomNumber = Math.floor(Math.random() * 2) + 1;
+        console.log("----------------dash da dash " + randomNumber);
+        grantCurrentHp -= randomNumber;
+        usrCurrentHp -= randomNumber;
         console.log("Grant the Almighty Chicken has " + grantCurrentHp + " health left.");
+        console.log(char1 + " has " + usrCurrentHp + " health left.");
     }
     usrWins++;
     console.log(char1 + " Wins: " + usrWins);
     grantCurrentHp = grantBaseHp;
+    console.log("____________________________________")
+}
+
+function playLimit() {
+    while (0 < usrCurrentHp && 0 < grantPlayLimit) {
+        singleRound();
+        grantPlayLimit--;
+    }
 }
 
 
