@@ -34,13 +34,18 @@ function startCombat() {
 
 function playLimit() {
     while (0 < computerCurrentHp) {
-        computerCurrentHp -= getDamage();
-        usrCurrentHp -= getDamage();
-        if (0 >= usrCurrentHp) {
-            break;
+        var continueGame = prompt("Would you like to attack or forfeit?");
+        if (continueGame === "attack") {
+            computerCurrentHp -= getDamage();
+            usrCurrentHp -= getDamage();
+            if (0 >= usrCurrentHp) {
+                break;
+            }
+            console.log("Grant the Almighty has " + computerCurrentHp + " health points left.");
+            console.log(playerName + " has " + usrCurrentHp + " health points left.");
+        } else if (continueGame === "forfeit") {
+            console.log("Game Over!")
         }
-        console.log("Grant the Almighty has " + computerCurrentHp + " health points left.");
-        console.log(playerName + " has " + usrCurrentHp + " health points left.");
     }
     usrWins++;
     computerCurrentHp = computerBaseHp;
@@ -49,4 +54,14 @@ function playLimit() {
 
 function getDamage() {
     return Math.floor(Math.random() * 5) + 1;
+}
+
+function continueGame() {
+    if (continueGame === "yes") {
+        startCombat();
+    } else {
+        function quitGame() {
+            break;
+        }
+    }
 }
