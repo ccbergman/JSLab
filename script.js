@@ -20,10 +20,19 @@ if (game === "yes") {
     console.log("Ok...maybe next time.")
 }
 
+function startGame() {
+
+}
+
+function startCombat() {
+
+}
+
+
 function singleRound() {
     while (0 < computerCurrentHp) {
-        computerCurrentHp -= randomNumberGenerator();
-        usrCurrentHp -= randomNumberGenerator();
+        computerCurrentHp -= getDamage();
+        usrCurrentHp -= getDamage();
         if (0 >= usrCurrentHp) {
             break;
         }
@@ -42,6 +51,6 @@ function playLimit() {
     }
 }
 
-function randomNumberGenerator() {
+function getDamage() {
     return Math.floor(Math.random() * 2) + 1;
 }
