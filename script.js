@@ -17,17 +17,14 @@ if (game === "yes") {
 
 function singleRound() {
     while (0 < grantCurrentHp) {
-        var randomNumber = Math.floor(Math.random() * 2) + 1;
-        console.log("----------------dash da dash " + randomNumber);
-        grantCurrentHp -= randomNumber;
-        usrCurrentHp -= randomNumber;
+        grantCurrentHp -= randomNumberGenerator();
+        usrCurrentHp -= randomNumberGenerator();
         console.log("Grant the Almighty Chicken has " + grantCurrentHp + " health left.");
         console.log(char1 + " has " + usrCurrentHp + " health left.");
     }
     usrWins++;
     console.log(char1 + " Wins: " + usrWins);
     grantCurrentHp = grantBaseHp;
-    console.log("____________________________________")
 }
 
 function playLimit() {
@@ -37,7 +34,6 @@ function playLimit() {
     }
 }
 
-
-// test if username was overwritten
-// console.log(char1)
-//remove unnecessary console prints
+function randomNumberGenerator() {
+    return Math.floor(Math.random() * 2) + 1;
+}
