@@ -7,14 +7,15 @@ var computerBaseHp = 10;
 var usrCurrentHp = usrBaseHp;
 var computerCurrentHp = computerBaseHp;
 var computerPlayLimit = 3;
+var stillPlaying;
+var continueGame;
 
 startGame();
-
 
 function startGame() {
     if (game === "yes") {
         playerName = prompt("What's your name?");
-        var continueGame = prompt("Would you like to attack or forfeit?");
+        var initalizeGame = prompt("Would you like to attack?");
         startCombat();
 
         if (3 === usrWins) {
@@ -28,13 +29,20 @@ function startGame() {
 }
 
 function startCombat() {
-    while (0 < usrCurrentHp && 0 < computerPlayLimit) {
-        playLimit();
+    do {
+        underAttack();
         computerPlayLimit--;
-    }
+        stillPlaying = (0 < usrCurrentHp && 0 < computerPlayLimit)
+
+        continueGame = prompt("Would you like to attack or forfeit?");
+        if (continueGame === "forfeit") {
+            stillPlaying = false;
+            console.log("Game Over!");
+        }
+    } while (stillPlaying);
 }
 
-function playLimit() {
+function underAttack() {
     while (0 < computerCurrentHp) {
         computerCurrentHp -= getDamage();
         usrCurrentHp -= getDamage();
@@ -47,25 +55,18 @@ function playLimit() {
     usrWins++;
     computerCurrentHp = computerBaseHp;
     console.log("DING! DING! DING!");
-    continueGame = prompt("Would you like to attack or forfeit?");
-
-    if (continueGame === "attack") {
-    } else if (continueGame === "forfeit") {
-        console.log("Game Over!");
-    }
-
 }
 
 function getDamage() {
     return Math.floor(Math.random() * 5) + 1;
 }
 
-function continueGame() {
-    if (continueGame === "yes") {
-        startCombat();
-    } else {
-        function quitGame() {
-            break;
-        }
-    }
-}
+// function continueGame() {
+//     if (continueGame === "yes") {
+//         startCombat();
+//     } else {
+//         function quitGame() {
+//             break;
+//         }
+//     }
+// }
